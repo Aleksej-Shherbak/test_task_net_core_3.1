@@ -1,8 +1,0 @@
-/home/aleksej/RiderProjects/TestNetCore/Domains/bin/Debug/netcoreapp3.1/Domains.deps.json
-/home/aleksej/RiderProjects/TestNetCore/Domains/bin/Debug/netcoreapp3.1/Domains.dll
-/home/aleksej/RiderProjects/TestNetCore/Domains/bin/Debug/netcoreapp3.1/Domains.pdb
-/home/aleksej/RiderProjects/TestNetCore/Domains/obj/Debug/netcoreapp3.1/Domains.csprojAssemblyReference.cache
-/home/aleksej/RiderProjects/TestNetCore/Domains/obj/Debug/netcoreapp3.1/Domains.AssemblyInfoInputs.cache
-/home/aleksej/RiderProjects/TestNetCore/Domains/obj/Debug/netcoreapp3.1/Domains.AssemblyInfo.cs
-/home/aleksej/RiderProjects/TestNetCore/Domains/obj/Debug/netcoreapp3.1/Domains.dll
-/home/aleksej/RiderProjects/TestNetCore/Domains/obj/Debug/netcoreapp3.1/Domains.pdb

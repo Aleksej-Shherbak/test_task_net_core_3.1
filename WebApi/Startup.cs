@@ -24,29 +24,29 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRouting(options => options.LowercaseUrls = true);
-            
+
             services.AddControllers()
                 .ConfigureApiBehaviorOptions(options =>
-            {
-                // тут конфигурация поведения веб-апи. В частоности, влияния аттрибута ApiController
-            }).AddNewtonsoftJson(options =>
-            { 
-                // тут я указываю статегию нейминга для входящего json. Будем работать в snake_case
-                options.SerializerSettings.ContractResolver = new DefaultContractResolver
                 {
-                    NamingStrategy = new SnakeCaseNamingStrategy()
+                    // тут конфигурация поведения веб-апи. В частоности, влияния аттрибута ApiController
+                }).AddNewtonsoftJson(options =>
+                {
+                    // тут я указываю статегию нейминга для входящего json. Будем работать в snake_case
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver
                     {
-                        ProcessDictionaryKeys = true,
-                        OverrideSpecifiedNames = true,
-                        ProcessExtensionDataNames = true
-                    }                        
-                };
-            });
-            
+                        NamingStrategy = new SnakeCaseNamingStrategy()
+                        {
+                            ProcessDictionaryKeys = true,
+                            OverrideSpecifiedNames = true,
+                            ProcessExtensionDataNames = true
+                        }
+                    };
+                });
+
             // db context
             services.AddEntityFrameworkNpgsql()
                 .AddDbContext<ApplicationDbContext>();
-            
+
             services.AddAutoMapper(typeof(Startup));
 
             // repos
@@ -56,7 +56,7 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (!env.IsProduction())
             {
                 app.UseDeveloperExceptionPage();
             }
@@ -64,6 +64,11 @@ namespace WebApi
             // app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            if (!env.IsProduction())
+            {
+                app.UseCors(builder => builder.AllowAnyOrigin());
+            }
 
             app.UseAuthorization();
 

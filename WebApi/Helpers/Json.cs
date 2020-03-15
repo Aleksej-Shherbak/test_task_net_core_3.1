@@ -6,11 +6,11 @@ namespace WebApi.Helpers
 {
     public static class Json
     {
-        public static JobIndexResponse GeneratePagedListAnswer(IPagedList<Job> pagedList)
+        public static PagedListResponse<T> GeneratePagedListAnswer<T>(IPagedList<T> pagedList)
         {
-            return new JobIndexResponse()
+            return new PagedListResponse<T>()
             {
-                Jobs = pagedList,
+                PagedList = pagedList,
                 TotalItemCount = pagedList.TotalItemCount,
                 PageCount = pagedList.PageCount,
                 PageNumber = pagedList.PageNumber,

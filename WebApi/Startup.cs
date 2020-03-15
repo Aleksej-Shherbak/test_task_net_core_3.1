@@ -31,10 +31,10 @@ namespace WebApi
                     // тут конфигурация поведения веб-апи. В частоности, влияния аттрибута ApiController
                 }).AddNewtonsoftJson(options =>
                 {
-                    // тут я указываю статегию нейминга для входящего json. Будем работать в snake_case
+                    // тут я указываю статегию нейминга для входящего json. 
                     options.SerializerSettings.ContractResolver = new DefaultContractResolver
                     {
-                        NamingStrategy = new SnakeCaseNamingStrategy()
+                        NamingStrategy = new CamelCaseNamingStrategy()
                         {
                             ProcessDictionaryKeys = true,
                             OverrideSpecifiedNames = true,

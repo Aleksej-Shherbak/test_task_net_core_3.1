@@ -28,7 +28,7 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult<JobIndexResponse>> Index(int page = 1)
+        public async Task<ActionResult<PagedListResponse<Job>>> Index(int page = 1)
         {
             var pagedList = await _jobRepository.All.ToPagedListAsync(page, 5);
 

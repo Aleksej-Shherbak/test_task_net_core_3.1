@@ -3,9 +3,9 @@ using X.PagedList;
 
 namespace WebApi.Responses
 {
-    public class JobIndexResponse
+    public class PagedListResponse<T>
     {
-        public IPagedList<Job> Jobs { get; set; }
+        public IPagedList<T> PagedList { get; set; }
         public int TotalItemCount { get; set; }
         public int PageCount { get; set; } 
         public int PageNumber { get; set; } 

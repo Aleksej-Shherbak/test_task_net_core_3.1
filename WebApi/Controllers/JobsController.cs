@@ -28,10 +28,13 @@ namespace WebApi.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<ActionResult<PagedListResponse<Job>>> Index(int page = 1)
+        public async Task<ActionResult<PagedListResponse<JobItemResponse>>> Index(int page = 1)
         {
-            var pagedList = await _jobRepository.All.ToPagedListAsync(page, 5);
+            var jobsPagedList = await _jobRepository.All.ToPagedListAsync(page, 5);
 
+            var pagedList = _mapper.Map<IPagedList<Job>, IPagedList<JobItemResponse>>(
+                jobsPagedList);
+            
             var res = Json.GeneratePagedListAnswer(pagedList);
             
             return res;

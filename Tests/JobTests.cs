@@ -22,6 +22,7 @@ namespace Tests
             {
                 opts.AddProfile<JobToJobResponseProfile>();
                 opts.AddProfile<JobRequestToJobProfile>();
+                opts.AddProfile<JobPagedListToJobItemResponsePagedList>();
             });
 
             _mapper = config.CreateMapper();

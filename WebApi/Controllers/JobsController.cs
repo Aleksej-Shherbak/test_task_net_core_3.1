@@ -43,19 +43,20 @@ namespace WebApi.Controllers
         [HttpPost]
         [Route("[action]")]
         [ProducesResponseType(StatusCodes.Status201Created)]
-        public async Task<ActionResult<Job>> Create(JobRequest request)
+        public async Task<JobItemResponse> Create(JobRequest request)
         {
             var job = _mapper.Map<JobRequest, Job>(request);
 
             await _jobRepository.SaveAsync(job);
 
-            return job;
+            var response = _mapper.Map<Job, JobItemResponse>(job);
+            return response;
         }
 
         [HttpGet]
         [Route("[action]/{id}")]
         [JobExistsFilter]
-        public async Task<ActionResult<JobItemResponse>> Read(int id)
+        public async Task<JobItemResponse> Read(int id)
         {
             var job = await _jobRepository.All.FirstOrDefaultAsync(x => x.JobId == id);
 
@@ -67,14 +68,16 @@ namespace WebApi.Controllers
         [HttpPatch]
         [Route("[action]/{id}")]
         [JobExistsFilter]
-        public async Task<ActionResult<Job>> Update(int id, [FromBody] JobRequest request)
+        public async Task<JobItemResponse> Update(int id, [FromBody] JobRequest request)
         {
             var job = _mapper.Map<JobRequest, Job>(request);
             job.JobId = id;
 
             await _jobRepository.SaveAsync(job);
 
-            return job;
+            var jobResponse = _mapper.Map<Job, JobItemResponse>(job);
+
+            return jobResponse;
         }
 
         [HttpDelete]
